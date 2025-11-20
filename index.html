@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcadHack</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="https://acadhack.github.io" class="logo-link" aria-label="AcadHack Home">
+                <!-- Logo for Dark Mode -->
+                <img src="assets/logo-dark.svg" alt="Logo" class="logo-img logo-dark">
+                <!-- Logo for Light Mode -->
+                <img src="assets/logo-light.svg" alt="Logo" class="logo-img logo-light">
+
+                <span class="logo-text">AcadHack</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="https://github.com/acadhack/acadhack-gui/wiki" target="_blank" class="nav-link">Guide</a>
+            <a href="https://github.com/acadhack" target="_blank" class="nav-link">GitHub</a>
+            <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-container">
+        <div class="grid-line-v left"></div>
+        <div class="grid-line-v right"></div>
+
+        <!-- Content -->
+        <div class="hero-content">
+            <div class="title-box top-box">
+                <h1 class="acad-text">ACAD</h1>
+                <span class="decorator-label">System: Academic</span>
+            </div>
+
+            <div class="grid-line-h"></div>
+
+            <div class="title-box bottom-box">
+                <span class="decorator-label">Action: Override</span>
+                <h1 class="hack-text">HACK_</h1>
+            </div>
+        </div>
+
+        <!-- Footer / CTA -->
+        <div class="hero-footer">
+            <p class="tagline">Acadally. Solved.</p>
+
+            <div class="cta-group">
+                <a href="#" class="btn-primary">
+                    <span><span>Get Access</span></span>
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <a href="#capabilities" aria-label="Scroll Down">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 13L12 18L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M7 6L12 11L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" opacity="0.5"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Indicator -->
+    <div class="section-separator" id="capabilities">
+        <div class="separator-line"></div>
+        <span class="mono-label">SYSTEM_CAPABILITIES // v1.0</span>
+        <div class="separator-line"></div>
+    </div>
+
+    <!-- WORKFLOW SECTION -->
+    <main class="workflow-section">
+
+        <!-- Step 1 -->
+        <div class="step-row reveal">
+            <div class="step-text offset-down">
+                <span class="step-number">01 // INITIALIZE</span>
+                <h2 class="step-heading">Launch Engine</h2>
+                <p class="step-desc">
+                    Open AcadHack. The heartbeat monitor syncs with Chrome immediately.
+                    Click "Launch Browser" to start the persistent session.
+                </p>
+            </div>
+
+            <div class="step-visual">
+                <div class="placeholder-box">
+                    [ SCREENSHOT: DASHBOARD ]
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-row reverse reveal">
+            <div class="step-text offset-up">
+                <span class="step-number">02 // EXECUTE</span>
+                <h2 class="step-heading">AI Takeover</h2>
+                <p class="step-desc">
+                    Navigate to quiz. Click "Solve".
+                    Gemini 2.5 analyzes LaTeX math & images.
+                    Auto-selection engaged.
+                </p>
+            </div>
+
+            <div class="step-visual offset-left">
+                <div class="placeholder-box">
+                    [ SCREENSHOT: SOLVER ]
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-row reveal">
+            <div class="step-text">
+                <span class="step-number">03 // STEALTH</span>
+                <h2 class="step-heading">Human Emulation</h2>
+                <p class="step-desc">
+                    Avoid detection. Random delays injected between clicks
+                    to mimic reaction time. Configurable.
+                </p>
+            </div>
+
+            <div class="step-visual">
+                <div class="placeholder-box">
+                    [ SCREENSHOT: SETTINGS ]
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-credits">
+                Built by <a href="https://github.com/AnAnonymousPotato" target="_blank">AnAnonymousPotato</a>
+            </p>
+            <p class="footer-license">MIT License | Open Source Software</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
