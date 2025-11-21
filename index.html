@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AcadHack</title>
-
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo-dark.svg" type="image/svg+xml">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,17 +21,15 @@
     <nav>
         <div class="nav-left">
             <a href="https://acadhack.github.io" class="logo-link" aria-label="AcadHack Home">
-                <!-- Logo for Dark Mode -->
                 <img src="assets/logo-dark.svg" alt="Logo" class="logo-img logo-dark">
-                <!-- Logo for Light Mode -->
                 <img src="assets/logo-light.svg" alt="Logo" class="logo-img logo-light">
-
                 <span class="logo-text">AcadHack</span>
             </a>
         </div>
         <div class="nav-right">
-            <a href="https://github.com/acadhack/acadhack-gui/wiki" target="_blank" class="nav-link">Guide</a>
-            <a href="https://github.com/acadhack" target="_blank" class="nav-link">GitHub</a>
+            <!-- Added ID for Easter Egg -->
+            <span class="terminal-prompt" id="header-terminal">anirudh@acadhack:~$</span>
+            
             <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
                 <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
                 <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -40,7 +41,7 @@
     <header class="hero-container">
         <div class="grid-line-v left"></div>
         <div class="grid-line-v right"></div>
-
+        
         <!-- Content -->
         <div class="hero-content">
             <div class="title-box top-box">
@@ -51,22 +52,25 @@
             <div class="grid-line-h"></div>
 
             <div class="title-box bottom-box">
-                <span class="decorator-label">Action: Override</span>
                 <h1 class="hack-text">HACK_</h1>
+                <span class="decorator-label">Action: Override</span>
             </div>
         </div>
 
         <!-- Footer / CTA -->
         <div class="hero-footer">
-            <p class="tagline">Acadally. Solved.</p>
-
+            <p class="tagline">Acadally. AI. Solved.</p>
+            
             <div class="cta-group">
-                <a href="#" class="btn-primary">
-                    <span><span>Get Access</span></span>
+                <a href="https://github.com/acadhack/acadhack-gui/wiki" id="btn-proceed" class="btn-primary">
+                    <span><span>Proceed</span></span>
+                </a>
+
+                <a href="https://github.com/acadhack" target="_blank" class="btn-secondary">
+                    <span><span>View Source</span></span>
                 </a>
             </div>
-
-            <!-- Scroll Indicator -->
+            
             <div class="scroll-indicator">
                 <a href="#capabilities" aria-label="Scroll Down">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,18 +91,16 @@
 
     <!-- WORKFLOW SECTION -->
     <main class="workflow-section">
-
         <!-- Step 1 -->
         <div class="step-row reveal">
             <div class="step-text offset-down">
                 <span class="step-number">01 // INITIALIZE</span>
                 <h2 class="step-heading">Launch Engine</h2>
                 <p class="step-desc">
-                    Open AcadHack. The heartbeat monitor syncs with Chrome immediately.
+                    Open AcadHack. The heartbeat monitor syncs with Chrome immediately. 
                     Click "Launch Browser" to start the persistent session.
                 </p>
             </div>
-
             <div class="step-visual">
                 <div class="placeholder-box">
                     [ SCREENSHOT: DASHBOARD ]
@@ -112,12 +114,11 @@
                 <span class="step-number">02 // EXECUTE</span>
                 <h2 class="step-heading">AI Takeover</h2>
                 <p class="step-desc">
-                    Navigate to quiz. Click "Solve".
-                    Gemini 2.5 analyzes LaTeX math & images.
+                    Navigate to quiz. Click "Solve". 
+                    Gemini 2.5 analyzes LaTeX math & images. 
                     Auto-selection engaged.
                 </p>
             </div>
-
             <div class="step-visual offset-left">
                 <div class="placeholder-box">
                     [ SCREENSHOT: SOLVER ]
@@ -131,18 +132,16 @@
                 <span class="step-number">03 // STEALTH</span>
                 <h2 class="step-heading">Human Emulation</h2>
                 <p class="step-desc">
-                    Avoid detection. Random delays injected between clicks
+                    Avoid detection. Random delays injected between clicks 
                     to mimic reaction time. Configurable.
                 </p>
             </div>
-
             <div class="step-visual">
                 <div class="placeholder-box">
                     [ SCREENSHOT: SETTINGS ]
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Footer -->
@@ -154,6 +153,35 @@
             <p class="footer-license">MIT License | Open Source Software</p>
         </div>
     </footer>
+
+    <!-- TERMINAL MODAL -->
+    <div id="terminal-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="term-buttons">
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                    <span class="term-dot"></span>
+                </div>
+                <span class="term-title">root@acadhack:~</span>
+            </div>
+            <div class="terminal-body">
+                <div id="terminal-output">
+                    <p class="term-line">> INITIALIZING SETUP WIZARD...</p>
+                    <p class="term-line">> ACCESS RESTRICTED.</p>
+                    <p class="term-line">> DO YOU WISH TO PROCEED? (yes/no)</p>
+                </div>
+                <div class="input-line">
+                    <span class="prompt-user">root@acadhack:~$</span>
+                    <input type="text" id="term-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER (For Easter Egg) -->
+    <div id="toast-container"></div>
 
     <script src="script.js"></script>
 </body>
