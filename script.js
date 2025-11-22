@@ -23,7 +23,8 @@ toggleButton && toggleButton.addEventListener('click', () => {
 });
 
 /* ============================
- * 1.5 CUSTOM CURSOR (CIRCLE → UNDERSCORE ON HOVER)
+ * 1.5 CUSTOM CURSOR
+ *      square → | over ANY text → _ over other clickables
  * ============================ */
 (function initCustomCursor() {
     const hasFinePointer = window.matchMedia &&
@@ -39,22 +40,41 @@ toggleButton && toggleButton.addEventListener('click', () => {
 
     body.classList.add('custom-cursor-enabled');
 
-    function handleMouseMove(e) {
-        const x = e.clientX;
-        const y = e.clientY;
-        cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-        body.classList.add('cursor-visible');
-    }
+    // Elements that should feel like "text" (caret |)
+    const textSelector = [
+        // generic text containers
+        'p',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'span',
+        'li',
+        'label',
+        'small',
+        'strong',
+        'em',
+        'code',
+        'pre',
 
-    window.addEventListener('mousemove', handleMouseMove);
+        // site-specific text classes (optional but explicit)
+        '.tagline',
+        '.step-desc',
+        '.step-heading',
+        '.mono-label',
+        '.acad-text',
+        '.hack-text',
 
-    window.addEventListener('mouseleave', () => {
-        body.classList.remove('cursor-visible');
-        body.classList.remove('cursor-hover');
-    });
+        // true text-input areas
+        'input[type="text"]',
+        'input[type="search"]',
+        'input[type="email"]',
+        'input[type="password"]',
+        'textarea',
+        '#term-input',
+        '.terminal-body'
+    ].join(', ');
 
-    // Anything considered "clickable"
-    const interactiveSelector = [
+    // Clickable UI (underscore _)
+    // NOTE: we deliberately keep text inputs OUT of this list
+    const clickSelector = [
         'a',
         'button',
         'input[type="button"]',
@@ -64,20 +84,42 @@ toggleButton && toggleButton.addEventListener('click', () => {
         '#theme-toggle',
         '.scroll-indicator a',
         '.logo-link',
-        '.terminal-prompt',
-        '.input-line input'
+        '.terminal-prompt'
     ].join(', ');
 
-    document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(interactiveSelector)) {
-            body.classList.add('cursor-hover');
-        }
-    });
+    function updateCursorShape(target) {
+        body.classList.remove('cursor-hover-text');
+        body.classList.remove('cursor-hover-click');
 
-    document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(interactiveSelector)) {
-            body.classList.remove('cursor-hover');
+        if (!target) return;
+
+        const overClick = target.closest(clickSelector);
+        const overText  = target.closest(textSelector);
+
+        // Clickable (underscore) takes precedence over text (caret)
+        if (overClick) {
+            body.classList.add('cursor-hover-click');
+        } else if (overText) {
+            body.classList.add('cursor-hover-text');
         }
+        // else: stays default square
+    }
+
+    function handleMouseMove(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+        cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+        body.classList.add('cursor-visible');
+
+        updateCursorShape(e.target);
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    window.addEventListener('mouseleave', () => {
+        body.classList.remove('cursor-visible');
+        body.classList.remove('cursor-hover-text');
+        body.classList.remove('cursor-hover-click');
     });
 })();
 
