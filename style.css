@@ -285,6 +285,10 @@ nav {
     margin-top: -10px;
 }
 
+.blink-underscore {
+    animation: blink 1s infinite;
+}
+
 /* Text Grain */
 .acad-text::before,
 .hack-text::before {

@@ -28,7 +28,7 @@ toggleButton && toggleButton.addEventListener('click', () => {
  * ============================ */
 (function initCustomCursor() {
     const hasFinePointer = window.matchMedia &&
-    window.matchMedia('(pointer: fine)').matches;
+        window.matchMedia('(pointer: fine)').matches;
 
     if (!hasFinePointer) return;
 
@@ -94,7 +94,7 @@ toggleButton && toggleButton.addEventListener('click', () => {
         if (!target) return;
 
         const overClick = target.closest(clickSelector);
-        const overText  = target.closest(textSelector);
+        const overText = target.closest(textSelector);
 
         // Clickable (underscore) takes precedence over text (caret)
         if (overClick) {
@@ -160,7 +160,7 @@ modalOverlay && modalOverlay.addEventListener('click', () => {
     modal.classList.remove('active');
 });
 
-termInput && termInput.addEventListener('keydown', function(e) {
+termInput && termInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
         const command = this.value.trim().toLowerCase();
 
@@ -297,4 +297,111 @@ if (headerTerminal) {
             triggerEasterEgg().catch(err => console.error('Easter egg failed:', err));
         }
     });
+}
+
+/* ============================
+ * 5. DYNAMIC CANVAS BACKGROUND
+ * ============================ */
+const canvas = document.createElement('canvas');
+canvas.style.position = 'fixed';
+canvas.style.inset = 0;
+canvas.style.zIndex = -1;
+canvas.style.pointerEvents = 'none';
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+let mouseX = 0, mouseY = 0;
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+resizeCanvas();
+
+function drawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Grain
+    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    const buffer = new Uint32Array(imageData.data.buffer);
+    for (let i = 0; i < buffer.length; i++) {
+        if (Math.random() < 0.02) buffer[i] = 0x05FFFFFF; // Very subtle white noise
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    // Scanlines
+    ctx.fillStyle = 'rgba(0, 255, 255, 0.015)';
+    for (let y = 0; y < canvas.height; y += 4) ctx.fillRect(0, y, canvas.width, 1);
+
+    // Cursor Ripple
+    const dist = 120;
+    const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, dist);
+    gradient.addColorStop(0, 'rgba(0, 112, 243, 0.04)');
+    gradient.addColorStop(1, 'rgba(0, 112, 243, 0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(mouseX, mouseY, dist, 0, Math.PI * 2);
+    ctx.fill();
+
+    requestAnimationFrame(drawCanvas);
+}
+drawCanvas();
+
+/* ============================
+ * 6. REALISTIC TERMINAL TYPING INTRO
+ * ============================ */
+const taglineEl = document.getElementById('tagline-typewriter');
+if (taglineEl) {
+    const text = "Acadally. AI. Solved.";
+    let i = 0;
+    taglineEl.textContent = '';
+
+    // Mistakes to simulate realistic typing
+    // Format: { atIndex: N, wrongChar: 'X', backspaces: 1 }
+    const mistakes = [
+        { atIndex: 4, wrongChar: 'l', backspaces: 1 }, // Acadl -> Acad
+        { atIndex: 12, wrongChar: 'S', backspaces: 1 } // AI. S -> AI. 
+    ];
+
+    let currentMistake = null;
+    let isBackspacing = false;
+
+    function typeWriter() {
+        // Check if we hit a mistake point
+        if (!isBackspacing && !currentMistake) {
+            currentMistake = mistakes.find(m => m.atIndex === i);
+        }
+
+        if (currentMistake) {
+            // Type the wrong character
+            taglineEl.textContent += currentMistake.wrongChar;
+            currentMistake = null; // Consumed
+            isBackspacing = true;
+            setTimeout(typeWriter, 100 + Math.random() * 100);
+            return;
+        }
+
+        if (isBackspacing) {
+            // Backspace
+            taglineEl.textContent = taglineEl.textContent.slice(0, -1);
+            isBackspacing = false;
+            setTimeout(typeWriter, 100 + Math.random() * 50);
+            return;
+        }
+
+        if (i < text.length) {
+            taglineEl.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50 + Math.random() * 80); // Random typing speed
+        } else {
+            // Add blinking cursor at the end
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.textContent = '_';
+            taglineEl.appendChild(cursor);
+        }
+    }
+    // Start after a slight delay
+    setTimeout(typeWriter, 500);
 }
