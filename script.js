@@ -370,7 +370,12 @@ if (taglineEl) {
     function typeWriter() {
         // Check if we hit a mistake point
         if (!isBackspacing && !currentMistake) {
-            currentMistake = mistakes.find(m => m.atIndex === i);
+            const mistakeIndex = mistakes.findIndex(m => m.atIndex === i);
+            if (mistakeIndex !== -1) {
+                currentMistake = mistakes[mistakeIndex];
+                // Remove the mistake so it doesn't trigger again for this index
+                mistakes.splice(mistakeIndex, 1);
+            }
         }
 
         if (currentMistake) {
