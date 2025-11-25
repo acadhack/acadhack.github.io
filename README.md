@@ -1,26 +1,38 @@
-# 🌐 AcadHack Showcase Website (WIP)
+# AcadHack Website 🌐
 
-This repository hosts the official project showcase and documentation website for AcadHack.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AcadHack is an advanced Python-based automation tool designed to solve multiple-choice quizzes on web platforms like Acadally, utilizing the Google Gemini API for real-time problem solving.
+This repository contains the source code for the official **AcadHack** landing page.
 
-## 🚀 Website Status
+🔗 **Live Site**: [acadhack.github.io](https://acadhack.github.io)
 
-The website is deployed via GitHub Pages and is accessible at: [https://acadhack.github.io/](https://acadhack.github.io/)
+## 🛠️ Tech Stack
 
-## 🏗 Technology Stack (Website)
+*   **HTML5**: Semantic structure.
+*   **CSS3**: Custom styling with CSS Variables for theming (Dark/Light mode).
+*   **Vanilla JavaScript**: Interactive elements (Terminal modal, Scroll animations).
+*   **Fonts**: Inter, JetBrains Mono, Space Grotesk.
 
-*   **Frontend:** [Specify your framework, e.g., HTML, CSS, JavaScript, or a static generator like Jekyll/Hugo]
-*   **Hosting:** GitHub Pages
-*   **Goal:** Provide feature lists, setup guides (linking to the `acadhack-gui` repository), and architectural overviews.
+## ✨ Features
 
-## 📚 Related Repositories
+*   **Dark/Light Mode**: Toggleable theme with persistent state.
+*   **Responsive Design**: Optimized for desktop and mobile.
+*   **Terminal Easter Egg**: Press `Ctrl + ~` (or click the prompt) to open a hidden terminal.
+*   **Smooth Animations**: Scroll-triggered reveal effects.
 
-| Repository | Purpose | Target Audience |
-| :--- | :--- | :--- |
-| [`acadhack-gui`](https://github.com/acadhack/acadhack-gui) | The primary, user-friendly desktop application for Windows. | Non-technical users. |
-| [`acadhack-cli`](https://github.com/acadhack/acadhack-cli) | The original, command-line automation core. | Developers, advanced users (cross-platform). |
+## 🚀 Local Development
 
-## Contributing to the Website
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/acadhack/acadhack.github.io.git
+    ```
+2.  Open `index.html` in your browser.
+    *   *Tip: Use VS Code's "Live Server" extension for the best experience.*
 
-If you find errors or have suggestions for improving our documentation or design, please submit an issue or pull request here!
+## ⚠️ Disclaimer
+
+> **Disclaimer**: AcadHack is **not affiliated** with Acadally. This project is for educational purposes only.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
