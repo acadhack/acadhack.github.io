@@ -17,7 +17,7 @@ This repository contains the source code for the official **AcadHack** landing p
 
 *   **Dark/Light Mode**: Toggleable theme with persistent state.
 *   **Responsive Design**: Optimized for desktop and mobile.
-*   **Terminal Easter Egg**: Press `Ctrl + ~` (or click the prompt) to open a hidden terminal.
+*   **Terminal Easter Egg**: Triple-click the prompt in the header (top-right side) to open a hidden terminal.
 *   **Smooth Animations**: Scroll-triggered reveal effects.
 
 ## 🚀 Local Development
